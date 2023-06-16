@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Entre no site! - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+
+ 	<section class="ftco-section pt-0">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section"></h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-5">
+                    <div class="login-wrap p-4 p-md-5">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <span class="fa fa-user-o"></span>
+                        </div>
+                        <h3 class="text-center mb-4">Não possui conta? <a href="{% url 'accounts:add_user' %}" target="_blank">Registre-se!</a></h3>
+
+                        <!-- Formulário de login: -->
+                        <form action="." method="post" class="login-form">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="text" placeholder="Nome de usuário" name="username" class="form-control rounded-left">
+                            </div>
+
+                            <div class="form-group d-flex">
+                                <input type="password" placeholder="Senha" class="form-control rounded-left" name="password">
+                            </div>
+
+                            <div class="form-group d-md-flex">
+                                <div class="w-50">
+                                    <label class="checkbox-wrap checkbox-primary">Remember Me
+                                        <input type="checkbox" checked>
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div class="w-50 text-md-right">
+                                    <a href="{% url 'accounts:recovery' %}">Esqueci minha senha!</a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary rounded submit p-3 px-5">Entrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock body %}

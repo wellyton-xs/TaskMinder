@@ -1,0 +1,21 @@
+# Django elements #
+media
+.idea
+.mypy_cache
+./todoapp/__pycache__
+./todoapp/settings.py
+db.sqlite3
+.env.save
+.env
+venv
+apps/accounts/__pycache__
+apps/accounts/migrations
+apps/core/__pycache__
+apps/core/migrations
+apps/tasks/__pycache__
+apps/tasks/migrations
+todoapp/__pycache__
+
+# Visual Studio Code # 
+.vscode/* 
+!.vscode/settings.json 

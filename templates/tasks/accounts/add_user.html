@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Registrar Usuário - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+    <div class="container"><br> 
+        <h1>Adicionar Usuário</h1>
+        {% include 'partials/messages.html' %}
+        <div class="row">
+            <div class="col-md-12">
+                <form action="." method="post">
+                    {% csrf_token %}
+                    <!--
+                        <div class="form-group">
+                            <label for="{{ form.username.id_for_label }}">Nome de Usuário</label>
+                                {{ form.username}}    <br>             
+                        </div>
+                        <div class="form-group">              
+                            <label for="{{ form.first_name.id_for_label }}">Primeiro Nome</label>
+                                    {{form.first_name}} <br>                                                                                              
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.last_name.id_for_label }}">Último Nome</label>
+                                {{ form.last_name}}   <br>          
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.email.id_for_label }}">Email</label>
+                                {{ form.email}}  <br> 
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.password.id_for_label }}">Senha</label>
+                                {{ form.password}}                                                                       
+                        </div>
+                        -->
+                        {{form.as_p}}
+                    <button class="btn btn-lg btn-primary btn-block mt-5" type="submit" >Salvar</button><br><br>
+                </form>   
+            </div>
+        </div>
+    </div>
+    
+{% endblock body %}

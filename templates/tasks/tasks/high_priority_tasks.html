@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Lista de tarefas de alta prioridade - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+{% if tasks %}
+
+<div class="container-fluid"><br>
+    <h1 style="font-weight: bold";>∙ Lista de tarefas de alta prioridade</h1>
+    <div class="text-end">
+        <div class="dropdown dropstart">
+            <a class="custom-button dropdown-toggle p-1" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Filtrar por <i class="bi bi-filter" style="font-size: 30px;"></i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+                
+                <li><a class="dropdown-item" href="{% url 'tasks:low_priority_tasks' %}">Baixa prioridade</a></li> 
+                <li><a class="dropdown-item" href="{% url 'tasks:medium_priority_tasks' %}">Média prioridade</a></li>
+                <li><a class="dropdown-item" href="{% url 'tasks:high_priority_tasks' %}">Alta prioridade</a></li>
+                <hr class="hr" />
+                <li><a class="dropdown-item" href="{% url 'tasks:imcomplete_tasks' %}">Não Concluídas</a></li>
+                <li><a class="dropdown-item" href="{% url 'tasks:show_completed_tasks' %}">Todas Concluídas</a></li>
+                <li><a class="dropdown-item" href="{% url 'tasks:list_tasks' %}">Todas</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover table-bordered" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
+                <thead>
+                    <tr>
+                        <th scope="col">Tarefas</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Progresso</th>
+                        <th scope="col">Prazo</th>
+                        <th scope="col">Prioridade</th>
+                        <th scope="col" style="width: 260px;">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for task in tasks %}
+                    <tr>
+                        <td>{{ task.name }}</td>
+                        <td>{{ task.description}}</td>
+                        <td>{{ task.completed}}</td>
+                        <td>{{ task.end_date}}</td>
+                        <td>{{ task.get_priority_display }}</td>
+                        <td>
+                            {% if task.completed == True %}
+                                <a href="{% url 'tasks:descomplete_task' task.id %}"
+                                class="btn btn-outline-warning btn-sm me-1">Reverter</a>
+                            {% else %}
+                                <a href="{% url 'tasks:complete_task' task.id %}"
+                                class="btn btn-outline-success btn-sm me-1">Concluir</a>
+                            {% endif %}
+                            
+                            
+                            <a href="{% url 'tasks:edit_task' task.id %}" class="btn btn-primary btn-sm">Editar</a>
+                            <a href="{% url 'tasks:delete_task' task.id %}" class="btn btn-danger btn-sm">Excluir</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% else %}
+<h1>Você não possui tarefas!</h1>
+{% endif %}
+{% endblock body %}

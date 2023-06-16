@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Access denied - {{ block.super }}
+{% endblock title %}
+
+{% block body%}        
+    <center>
+    <h1>Você não tem permissão para acessar esta página, pois não está logado!</h1>
+    <h3>Faça agora o seu <a href="{% url 'accounts:login' %}">Login</a> Ou <a href="{% url 'accounts:add_user' %}">Registre-se</a> para ter acesso!</h3>
+    </center>
+{% endblock body %}

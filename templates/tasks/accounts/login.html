@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login de Usuário - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+    <div class="container"> 
+        <h1>Login</h1><br>
+        {% include 'partials/messages.html' %}
+        <div class="row">
+            <div class="col-md-12">
+                <form action="." method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="Username" class="form-label">Username</label>
+                        <input type="text" placeholder="Nome de usuário" class="form-control" name="username" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Password1" class="form-label">Password</label>
+                        <input type="password" placeholder="Digite sua senha" class="form-control" name="password">
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block mt-5" type="submit" >Salvar</button>
+                </form>   
+            </div>
+        </div>
+    </div>  
+{% endblock body %}
